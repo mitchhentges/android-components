@@ -68,6 +68,8 @@ RUN git clone --depth=1 $PROJECT_REPOSITORY
 
 WORKDIR /build/android-components
 
+RUN echo "mhentges|before"
+RUN df -h
 RUN ./gradlew clean \
     && ./gradlew dependencies \
     && ./gradlew androidDependencies \
@@ -78,3 +80,5 @@ RUN ./gradlew clean \
     && ./gradlew --no-daemon ktlint \
     && ./gradlew --no-daemon docs \
     && ./gradlew clean
+RUN echo "mhentges|after"
+RUN df -h
